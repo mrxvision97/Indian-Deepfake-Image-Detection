@@ -25,8 +25,7 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-# Use a relative path for the YOLO model
-# Assuming yolov11m-face.pt is in the same directory as main.py (backend/app/)
+
 yolo_model_path = os.path.join(os.path.dirname(__file__), "yolov11m-face.pt")
 yolo_model = YOLO(yolo_model_path)
 
