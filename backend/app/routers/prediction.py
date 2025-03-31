@@ -6,7 +6,6 @@ import torch
 import logging
 import os
 
-# Define the router without a prefix
 router = APIRouter()
 
 logger = logging.getLogger(__name__)
