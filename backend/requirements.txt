@@ -8,13 +8,13 @@ timm==1.0.15
 scikit-learn==1.6.1
 pillow==10.2.0
 pydantic==2.6.3
-python-multipart==0.0.9
+
 
 # For face detection (YOLOv11 and MTCNN)
 ultralytics==8.3.0  # For YOLOv11
 facenet-pytorch==2.6.0  # For MTCNN
 opencv-python==4.11.0.86
-opencv-python-headless==4.9.0.80
+
 
 # For web app deployment (FastAPI)
 fastapi==0.115.2
