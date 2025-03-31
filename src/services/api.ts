@@ -9,12 +9,27 @@ interface ImageFilters {
 export async function predictImage(
   imageData: string,
   model: 'cnn' | 'xception',
-  filters: ImageFilters,
+  filters: ImageFilters | null, // Allow filters to be null
   isCameraInput: boolean
 ) {
   try {
+    // Map frontend model names to backend model names
     const backendModel = model === 'cnn' ? 'CustomCNN' : 'Xception71';
-    const base64Image = imageData.split(',')[1] || imageData;
+
+    // Ensure the base64 image is in the correct format
+    let base64Image = imageData;
+    if (imageData.startsWith('data:image')) {
+      base64Image = imageData.split(',')[1];
+    }
+
+    // Log the request payload for debugging
+    const payload = {
+      image: base64Image.substring(0, 50) + '...', // Log a snippet of the base64 string
+      model: backendModel,
+      filters,
+      isCameraInput,
+    };
+    console.log('Sending prediction request:', payload);
 
     const response = await fetch(`${API_URL}${API_ENDPOINTS.predict}`, {
       method: 'POST',
@@ -24,21 +39,23 @@ export async function predictImage(
       body: JSON.stringify({
         image: base64Image,
         model: backendModel,
-        filters,
-        isCameraInput // Add this to the payload
+        filters: filters || null, // Ensure filters is null if not provided
+        isCameraInput,
       }),
     });
 
     if (!response.ok) {
       const errorDetails = await response.text();
-      throw new Error(`Prediction failed: ${response.statusText}. Details: ${errorDetails}`);
+      console.error(`Prediction failed: ${response.status} - ${response.statusText}. Details: ${errorDetails}`);
+      throw new Error(errorDetails || 'Failed to process the image. Please try again.');
     }
 
     const result = await response.json();
+    console.log('Prediction result:', result);
     return result;
   } catch (error) {
     console.error('Error during image prediction:', error);
-    throw new Error('Failed to process the image. Please try again.');
+    throw new Error(error.message || 'An error occurred while processing the image. Please try again.');
   }
 }
 
