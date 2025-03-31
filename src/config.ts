@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8000';
+export const API_URL = 'https://indian-deepfake-image-detection.onrender.com';
 
 export const API_ENDPOINTS = {
   predict: '/predict',
