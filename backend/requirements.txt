@@ -2,27 +2,25 @@
 torch==2.2.2
 torchvision==0.17.2
 numpy==1.26.4
-albumentations==2.0.5
+albumentations==1.4.18  # Downgrade to a compatible version
 pandas==2.2.3
 timm==1.0.15
 scikit-learn==1.6.1
 pillow==10.2.0
-pydantic==2.6.3
-
 
 # For face detection (YOLOv11 and MTCNN)
-ultralytics==8.3.0  # For YOLOv11
-facenet-pytorch==2.6.0  # For MTCNN
+ultralytics==8.3.0
+facenet-pytorch==2.6.0
 opencv-python==4.11.0.86
-
 
 # For web app deployment (FastAPI)
 fastapi==0.115.2
-uvicorn==0.32.0  # For running FastAPI
-python-multipart==0.0.12  # For handling file uploads in FastAPI
+uvicorn==0.32.0
+python-multipart==0.0.12
+pydantic==2.6.3  # Explicitly pin pydantic if it’s in your requirements.txt
 
 # Additional utilities (if used in data generation)
-huggingface-hub==0.29.1  # For accessing Stable Diffusion models
-diffusers==0.32.2  # For Stable Diffusion
-transformers==4.49.0  # For Hugging Face models
-safetensors==0.5.3  # For loading model weights safely
+huggingface-hub==0.29.1
+diffusers==0.32.2
+transformers==4.49.0
+safetensors==0.5.3
