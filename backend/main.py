@@ -9,6 +9,11 @@ from ultralytics import YOLO
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -25,10 +30,20 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-
+# Use a relative path for the YOLO model
 yolo_model_path = os.path.join(os.path.dirname(__file__), "yolov11m-face.pt")
 yolo_model = YOLO(yolo_model_path)
 
+# Import and include the predict router
+try:
+    from .routes import predict
+    app.include_router(predict.router)
+    logger.info("Predict router included successfully")
+except ImportError as e:
+    logger.error(f"Failed to import predict router: {str(e)}")
+    raise
+
+# Utility functions (same as before)
 def decode_base64_image(base64_string: str) -> Image.Image:
     try:
         if 'base64,' in base64_string:
@@ -108,3 +123,8 @@ def preprocess_image(image: Image.Image) -> np.ndarray:
 @app.get("/health")
 async def health_check():
     return {"status": "ok", "message": "Backend is running"}
+
+# Add a root endpoint for testing
+@app.get("/")
+async def root():
+    return {"message": "Indian Deepfake Detection Backend"}
