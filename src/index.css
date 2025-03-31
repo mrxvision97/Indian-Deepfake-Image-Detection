@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animation keyframes */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: 0%;
+  }
+  75% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes loading {
+  0% {
+    width: 5%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 95%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Background and gradients */
+.bg-pattern {
+  background-image: url('https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.gradient-animate {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 153, 51, 0.15),
+    rgba(0, 128, 0, 0.15),
+    rgba(0, 0, 128, 0.15)
+  );
+  background-size: 300% 300%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+.animate-scanline {
+  animation: scanline 2s linear infinite;
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2s infinite;
+}
+
+.animate-loading {
+  animation: loading 2s ease-in-out infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.7s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.7s ease-out forwards;
+}
+
+.animate-ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Custom components */
+.info-card {
+  @apply bg-gray-800/30 backdrop-blur-md rounded-lg border border-gray-700 p-4 transition-all duration-300;
+}
+
+.info-card:hover {
+  @apply border-orange-500/30 shadow-lg shadow-orange-500/10;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-orange-500/50 flex items-center justify-center gap-2;
+}
+
+.btn-secondary {
+  @apply bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-blue-500/50 flex items-center justify-center gap-2;
+}
+
+.image-container {
+  @apply relative overflow-hidden rounded-lg border-2 border-gray-700 hover:border-orange-500/50 transition-colors duration-300;
+}
+
+.filter-slider {
+  @apply w-full h-2 bg-gray-700 rounded-full appearance-none;
+}
+
+.filter-slider::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 bg-orange-500 rounded-full cursor-pointer;
+}
+
+.result-container {
+  @apply p-6 rounded-lg backdrop-blur-sm border animate-fadeIn;
+}
+
+.result-container.real {
+  @apply bg-green-600/20 border-green-500/30;
+}
+
+.result-container.fake {
+  @apply bg-red-600/20 border-red-500/30;
+}
+
+/* Progress bars */
+.progress-bar {
+  @apply w-full bg-gray-700 rounded-full h-2 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full rounded-full;
+}
+
+.progress-fill.real {
+  @apply bg-green-500;
+}
+
+.progress-fill.fake {
+  @apply bg-red-500;
+}
+
+/* Info tips carousel */
+.info-tip {
+  @apply flex items-center gap-2;
+}
+
+.info-indicator {
+  @apply h-1 rounded-full flex-grow transition-all duration-300;
+}
+
+.info-indicator.active {
+  @apply bg-orange-500;
+}
+
+.info-indicator.inactive {
+  @apply bg-gray-600;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .btn-primary, .btn-secondary {
+    @apply px-3 py-2 text-sm;
+  }
+  
+  .image-preview {
+    @apply h-48;
+  }
+}
+
+/* Additional utilities for responsive design */
+.responsive-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+/* Special effects */
+.glassmorphism {
+  @apply bg-gray-800/60 backdrop-blur-md border border-gray-700/50;
+}
+
+.text-gradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-green-500;
+}
+
+/* Warning banner */
+.warning-banner {
+  @apply bg-gradient-to-r from-red-700 via-orange-600 to-red-700 text-white py-2 px-4 animate-pulse;
+}

@@ -1,0 +1,21 @@
+# Node.js dependencies
+node_modules/
+dist/
+dist-ssr/
+
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+venv/
+env/
+
+
+data/
+D:/External test Images/
+
+# Logs and temporary files
+*.log
+*.csv  # If you don't want to track prediction CSVs
+
+
+.env
