@@ -116,10 +116,10 @@ Deployed via a web interface.
 ### Deploying on Netlify
 - **Backend Setup**:
   - Flask/FastAPI app loads CustomCNN and Xception71 models, processes image uploads, and returns predictions.
-  - Hosted on Replit (e.g., `https://your-backend.replit.app/predict`).
+  - Hosted on Replit (e.g., `https://indian-deepfake-image-detection.onrender.com​`).
 - **Frontend**:
   - HTML/CSS/JavaScript interface for image uploads and prediction display.
-  - Hosted on Netlify (e.g., `https://your-site.netlify.app`).
+  - Hosted on Vercel (e.g., `https://indian-deepfake-image-detection-jyqo.vercel.app/​').
 - **Steps**:
   1. Push frontend to GitHub.
   2. Deploy on Netlify with static site settings.
